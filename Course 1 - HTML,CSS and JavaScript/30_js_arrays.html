@@ -1,0 +1,32 @@
+<html>
+<head>
+    <title>Arrays</title>
+</head>
+<body><script>
+    var pets = ["hamster","dog","cat","rabbit","dog"];
+    alert("pets: " + pets)
+
+    alert("index of cat:" + pets.indexOf("cat"));
+    alert("last index of dog: " +pets.lastIndexOf("dog"));
+    // Sort and reverse change the original variable
+    alert("pets after sort: "+pets.sort());
+    alert("pets after reverse: "+ pets.reverse());
+
+    //slice selects a subset form the given index on, but does not change the original array, slice( start,end)
+    var sliced_pets = pets.slice(1,2);
+    alert("sliced_pets: " + sliced_pets);
+
+    //splice removes one (or more) element from the original array and returns the removed items, splice( positon, length)
+    var spliced_pets = pets.splice(2,1);
+    alert("removed itmes: " + spliced_pets + " ,pets: "+ pets);
+
+    //splice can also be used to add elements, using 0 as length
+    pets.splice( 2,0, "horse");
+    alert("added a horse: " + pets);
+
+    //similarly splice can be used for replacing items
+    pets.splice( 1,1, "fish","cockroach")
+    alert("replaced items: " + pets);
+    
+</script></body>
+</html>
