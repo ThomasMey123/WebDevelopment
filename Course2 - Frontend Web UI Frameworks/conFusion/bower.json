@@ -1,0 +1,26 @@
+{
+  "name": "conFusion",
+  "homepage": "",
+  "description": "Website conFusion Restaurant",
+  "main": "index.html",
+  "keywords": [
+    "conFusion",
+    "Fusion",
+    "Restaurant"
+  ],
+  "authors": [
+    "Thomas"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "font-awesome": "^4.6.3"
+  }
+}
