@@ -1,7 +1,8 @@
 'use strict';
-angular.module('confusionApp', []).controller('menuController', function() {
-  this.tab = 1;
-  this.filtText = '';
+angular.module('confusionApp', []).controller('MenuController', ['$scope',function($scope) {
+  $scope.tab = 1;
+  $scope.filtText = '';
+  $scope.showDetails = false;
   
   var dishes = [
     {
@@ -44,27 +45,62 @@ angular.module('confusionApp', []).controller('menuController', function() {
       comment: ''
     }
   ]; 
-  
-  this.dishes = dishes;
 
-  this.select = function(setTab) {
-    this.tab = setTab;
+  $scope.dishes = dishes;
     
-    if (setTab === 2) {
-      this.filtText = "appetizer";
-    } 
-    else if (setTab === 3) {
-      this.filtText = "mains";
-    }
-    else if (setTab === 4) {
-      this.filtText = "dessert";
-    }
-    else {
-      this.filtText = "";
-    }
-  };
-  
-  this.isSelected = function (checkTab) {
-    return (this.tab === checkTab);
-  };
-});
+  $scope.select = function(setTab) {
+      $scope.tab = setTab;
+      
+      if (setTab === 2) {
+        $scope.filtText = "appetizer";
+      } 
+      else if (setTab === 3) {
+        $scope.filtText = "mains";
+      }
+      else if (setTab === 4) {
+        $scope.filtText = "dessert";
+      }
+      else {
+        $scope.filtText = "";
+      }
+    };
+    
+    $scope.isSelected = function (checkTab) {
+      return ($scope.tab === checkTab);
+    };
+
+    $scope.toggleDetails = function() {
+        $scope.showDetails = !$scope.showDetails;
+    };
+  }])
+
+.controller('ContactController', ['$scope', function($scope) {
+
+        $scope.feedback = {mychannel:"", firstName:"", lastName:"",
+                          agree:false, email:"" };
+           var channels = [{value:"tel", label:"Tel."}, {value:"Email",label:"Email"}];
+            $scope.channels = channels;
+            $scope.invalidChannelSelection = false;                      
+  }])
+
+.controller('FeedbackController', ['$scope', function($scope) {
+                $scope.sendFeedback = function() {
+                  
+                  console.log($scope.feedback);
+
+                  if ($scope.feedback.agree && ($scope.feedback.mychannel == "")&& !$scope.feedback.mychannel) {
+                      $scope.invalidChannelSelection = true;
+                      console.log('incorrect');
+                  }
+                  else {
+                      $scope.invalidChannelSelection = false;
+                      $scope.feedback = {mychannel:"", firstName:"", lastName:"",
+                                        agree:false, email:"" };
+                      $scope.feedback.mychannel="";
+
+                      $scope.feedbackForm.$setPristine();
+                      console.log($scope.feedback);
+                  }
+              };                                  
+  }])
+;
